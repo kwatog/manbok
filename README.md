@@ -1,6 +1,6 @@
 # mktweb
 
-> FilipinoSG Online Marketplace
+> Vue+Firebase+DjangoREST Framework Boilerplate
 
 ## Build Setup
 
