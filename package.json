@@ -1,7 +1,7 @@
 {
-  "name": "mktweb",
+  "name": "manbok",
   "version": "1.0.0",
-  "description": "FilipinoSG Online Marketplace",
+  "description": "Vue NuxtJS Firebase Django REST Boilerplate",
   "author": "kwatog",
   "private": true,
   "scripts": {
