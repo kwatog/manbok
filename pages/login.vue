@@ -136,20 +136,19 @@ export default {
      }
   },
   methods: {
-    doLogin(e) {
-      const _this = this
-      this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
-      .then(user => {
-        _this.$fireAuth.currentUser.getIdToken(true).then((idToken) => {
-          _this.$axios.setHeader('Authorization', `JWT ${idToken}`)
-          this.$router.push('/secret')
-        }).catch((error) => {
-          // Handle error
+    async doLogin(e) {
+      this.loading = true;
+      try {
+        await this.$store.dispatch('login/login', {
+          email: this.email,
+          password: this.password
         })
-      })
-      .catch(e => {
-        console.log(e)
-      })
+        
+        this.$router.push("/")
+      } catch (error) {
+        this.loading = false
+        console.error(error.message)
+      }
       e.preventDefault()
     },
     ping(e) {
