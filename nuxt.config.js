@@ -85,8 +85,14 @@ export default {
       messagingSenderId: process.env.FIRE_MESSAGINGSENDERID,
       appId: process.env.FIRE_APPID
     },
+    onFirebaseHosting: false,
     services: {
-      auth: true  
-    }    
+      auth: {
+        initialize: {
+          onSuccessAction: 'login/handleSuccessfulAuthentication',
+          ssr: true
+        }
+      },
+    }
   }
 }

@@ -1,10 +1,23 @@
 <template>
-  <div>
+  <div class="container">
+    <navbar-component></navbar-component>
     <nuxt />
   </div>
 </template>
 
+<script>
+import NavbarComponent from "@/components/navbar.vue"
+
+export default {
+  name: "login-page",
+  components: {
+    NavbarComponent
+  }
+}
+</script>
+
 <style>
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
