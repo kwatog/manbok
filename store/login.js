@@ -60,20 +60,16 @@ export const actions = {
 
   async register ({ commit }, { email, password }) {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
-      const user = auth.currentUser;
-      await user.sendEmailVerification();
-      commit('SET_AUTH_USER', user.user);
+      const user = await this.$fireAuth.createUserWithEmailAndPassword(email, password)
+      // const user = auth.currentUser
+      await this.$fireAuth.currentUser.sendEmailVerification()
+      // console.log(user)
+      // commit('SET_AUTH_USER', user)
     } catch (error) {
         if(error.code === 'auth/email-already-in-use') {
-          try {
-            const user = await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
-            commit('SET_AUTH_USER', user.user);
-          } catch (error) {
-            throw new Error('An Error Ocurred: ', error);
-          }
+          throw new Error('This email is already registered. Please key-in the correct email.')
         } else {
-          throw new Error('An Error Ocurred: ', error);
+          throw new Error(error.message)
         }
       }
     },

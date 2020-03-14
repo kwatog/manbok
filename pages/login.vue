@@ -107,7 +107,7 @@
                         class="bg-gray-400 text-gray-900 active:bg-gray-200 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                         type="button"
                         style="transition: all 0.15s ease 0s;"
-                        @click="doLogin"
+                        @click="$router.push('/register')"
                       >
                         Create New Account
                       </button>

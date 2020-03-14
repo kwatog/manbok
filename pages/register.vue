@@ -16,7 +16,7 @@
                 <div class="rounded-t mb-0 px-6 py-6">
                   <div class="text-center mb-3">
                     <h6 class="text-gray-600 text-sm font-bold">
-                      Sign in with Email
+                      Create New Account
                     </h6>
                   </div>
                   <!-- div class="btn-wrapper text-center">
@@ -75,26 +75,14 @@
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
-                    <div>
-                      <label class="inline-flex items-center cursor-pointer"
-                        ><input
-                          id="customCheckLogin"
-                          type="checkbox"
-                          class="form-checkbox text-gray-800 ml-1 w-5 h-5"
-                          style="transition: all 0.15s ease 0s;"
-                        /><span class="ml-2 text-sm font-semibold text-gray-700"
-                          >Remember me</span
-                        ></label
-                      >
-                    </div>
                     <div class="text-center mt-6">
                       <button
                         class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                         type="button"
                         style="transition: all 0.15s ease 0s;"
-                        @click="doLogin"
+                        @click="doRegister"
                       >
-                        Sign In
+                        Register
                       </button>
                     </div>
                   </form>
@@ -124,6 +112,7 @@
 // import VueCookie from 'vue-cookie'
 export default {
   name: 'Register',
+  layout: 'basic',
   data() {
     return {
       email: '',
@@ -136,18 +125,18 @@ export default {
      }
   },
   methods: {
-    async doLogin(e) {
+    async doRegister(e) {
       this.loading = true;
       try {
-        await this.$store.dispatch('login/login', {
+        await this.$store.dispatch('login/register', {
           email: this.email,
           password: this.password
         })
-        
-        this.$router.push("/")
-      } catch (error) {
+        this.$toast.show('Registration complete. Please login.', { duration: 1500 })
+        this.$router.push("/login")
+      } catch (e) {
         this.loading = false
-        console.error(error.message)
+        this.$toast.error(e.message, { duration: 1500 })
       }
       e.preventDefault()
     },
