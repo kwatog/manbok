@@ -4,12 +4,27 @@ export const state = () => ({
 
 export const mutations = {
   SET_AUTH_USER (state, user) {
-    state.authUser = {
-      uid: user.uid,
-      email: user.email
+    if (user) {
+      state.authUser = {
+        uid: user.uid,
+        email: user.email
+      }
+    } else {
+      state.authUser = null
+    }
+    console.log(user)
+  }
+}
+export const getters = {
+  isLoggedIn: (state) => {
+    try {
+      return state.authUser.id !== null
+    } catch {
+      return false
     }
   }
 }
+
 
 export const actions = {
   handleSuccessfulAuthentication({ commit }, { authUser, claims }) {
@@ -21,19 +36,26 @@ export const actions = {
     _this.$fireAuth.currentUser.getIdToken(true).then((idToken) => {
       _this.$axios.setHeader('Authorization', `JWT ${idToken}`)
     }).catch((error) => {
-      throw new Error('An Error Ocurred: ', error)
+      throw new Error('An Error Ocurred: ', error.message)
     })
 
     commit('SET_AUTH_USER', { authUser })
-    console.log(authUser)
-  },    
+  },   
+  onErrorAction( { commit} , error) {
+    console.log('hey!')
+    console.log(error)
+  }, 
   async login ({ commit }, { email, password }) {
-    await this.$fireAuth.signInWithEmailAndPassword(email, password)
-    // commit('SET_AUTH_USER', null);
+    try {
+      const user = await this.$fireAuth.signInWithEmailAndPassword(email, password)
+    }
+    catch (e) {
+      throw new Error(e.message)
+    }    
   },
   async logout ({ commit }) {
-    await auth.signOut();
-    commit('SET_AUTH_USER', null);
+    await this.$fireAuth.signOut()
+    commit('SET_AUTH_USER', null)
   },
 
   async register ({ commit }, { email, password }) {

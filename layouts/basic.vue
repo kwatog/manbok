@@ -1,18 +1,13 @@
 <template>
   <div class="container">
-    <navbar-component></navbar-component>
     <nuxt />
   </div>
 </template>
 
 <script>
-import NavbarComponent from "@/components/navbar.vue"
 
 export default {
-  name: "default",
-  components: {
-    NavbarComponent
-  }
+  name: "basic",
 }
 </script>
 

@@ -2,11 +2,11 @@ import VueCookie from 'vue-cookie'
 
 const LoginService = {
 
-  async login({ commit}, { email, password}) {
+  async setToken() {
     const _this = this
     console.log(email, password)
     try {
-      const user = await _this.$fireAuth.signInWithEmailAndPassword(email, password)
+      // const user = await _this.$fireAuth.signInWithEmailAndPassword(email, password)
       // commit('SET_AUTH_USER', user.user)
       // _this.$fireAuth.currentUser.getIdToken(true).then((idToken) => {
       //  _this.$axios.setHeader('Authorization', `JWT ${idToken}`)

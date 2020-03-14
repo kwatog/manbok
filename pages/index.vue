@@ -36,11 +36,9 @@
                 >
                   <i class="fas fa-rocket text-xl"></i>
                 </div>
-                <h3 class="text-3xl font-semibold">A growing company</h3>
+                <h3 class="text-3xl font-semibold">NuxtJS+ FireBase+Django+REST Boilerplate</h3>
                 <p class="mt-4 text-lg leading-relaxed text-gray-600">
-                  The extension comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go.
+                  This is boilerplate project for creating vue+nuxtjs+FireBase+Django+django REST Framework stack.
                 </p>
                 <ul class="list-none mt-6">
                   <li class="py-2">

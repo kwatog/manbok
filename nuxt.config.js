@@ -41,7 +41,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/axios' }  
+    { src: '~/plugins/axios' },
+    { src: '~/plugins/swal' }  
   ],
   /*
    ** Nuxt.js dev-modules
@@ -61,7 +62,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-	  '@nuxtjs/firebase'
+    '@nuxtjs/firebase',
+    '@nuxtjs/toast'
   ],
   /*
    ** Axios module configuration
@@ -92,9 +94,13 @@ export default {
       auth: {
         initialize: {
           onSuccessAction: 'login/handleSuccessfulAuthentication',
-          ssr: true
+          ssr: true,
+          // onErrorAction: 'login/onErrorAction'
         }
       },
     }
-  }
+  },
+  toast: {
+    position: 'top-center'
+  }  
 }

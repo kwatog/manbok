@@ -75,8 +75,8 @@
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
-                    <div class="w-full  inline-flex items-center cursor-pointer">
-                      <label class="w-1/2 inline-flex items-center cursor-pointer"
+                    <div>
+                      <label class="inline-flex items-center cursor-pointer"
                         ><input
                           id="customCheckLogin"
                           type="checkbox"
@@ -84,13 +84,8 @@
                           style="transition: all 0.15s ease 0s;"
                         /><span class="ml-2 text-sm font-semibold text-gray-700"
                           >Remember me</span
-                        >
-                      </label>
-                      <div class="w-1/2 text-right">
-                        <a href="#pablo" class="text"
-                          ><span class="text-sm font-semibold text-gray-700">Forgot password?</span></a
-                        >
-                      </div>                      
+                        ></label
+                      >
                     </div>
                     <div class="text-center mt-6">
                       <button
@@ -102,17 +97,19 @@
                         Sign In
                       </button>
                     </div>
-                    <div class="text-center mt-3">
-                      <button
-                        class="bg-gray-400 text-gray-900 active:bg-gray-200 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                        type="button"
-                        style="transition: all 0.15s ease 0s;"
-                        @click="doLogin"
-                      >
-                        Create New Account
-                      </button>
-                    </div>
                   </form>
+                </div>
+              </div>
+              <div class="flex flex-wrap mt-6">
+                <div class="w-1/2">
+                  <a href="#pablo" class="text-gray-300"
+                    ><small>Forgot password?</small></a
+                  >
+                </div>
+                <div class="w-1/2 text-right">
+                  <a href="#pablo" class="text-gray-300"
+                    ><small>Create new account</small></a
+                  >
                 </div>
               </div>
             </div>
@@ -126,8 +123,7 @@
 <script>
 // import VueCookie from 'vue-cookie'
 export default {
-  layout: 'basic',
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
       email: '',
@@ -136,7 +132,7 @@ export default {
   },
   computed: {
      apiKey() {
-      return process.env.FIRE_APIKEY
+         return process.env.FIRE_APIKEY
      }
   },
   methods: {
@@ -147,10 +143,11 @@ export default {
           email: this.email,
           password: this.password
         })
+        
         this.$router.push("/")
-      } catch (e) {
-        this.$toast.error(e.message, { duration: 1500 })
+      } catch (error) {
         this.loading = false
+        console.error(error.message)
       }
       e.preventDefault()
     },
