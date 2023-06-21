@@ -19,7 +19,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/toast": "^3.3.0",
     "firebase": "^7.10.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^3.4.3",
     "vue-cookie": "^1.1.4",
     "vue-swal": "^1.0.0"
   },
